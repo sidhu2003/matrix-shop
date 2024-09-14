@@ -3,14 +3,8 @@ services:
     build: ./server
     ports:
       - "8000:8000"
-
-    environment:
-      - DATABASE=mongodb://mongo:27017/ecommerce
-      - PORT=8000
-      - BRAINTREE_MERCHANT_ID=wn438nvxkqkyj847
-      - BRAINTREE_PUBLIC_KEY=jf8mcys2h79g2g9h
-      - BRAINTREE_PRIVATE_KEY=b259c96042b3c46e47b94bc8b1cf0c71
-  
+    env_file:
+      - .env
     networks:
       - server-mongo
     depends_on:
@@ -20,9 +14,8 @@ services:
     build: ./client
     ports:
       - "80:80"
-    environment:
-      - REACT_APP_API_URL=http://localhost:8000
-      - NODE_OPTIONS=--openssl-legacy-provider
+    env_file:
+      - .env
     depends_on:
       - backend
 

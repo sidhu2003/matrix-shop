@@ -3,6 +3,7 @@ FROM node:22-alpine3.19 as builder
 WORKDIR /app
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
+ENV REACT_APP_API_URL=http://localhost:8000
 
 COPY package.json /app
 
